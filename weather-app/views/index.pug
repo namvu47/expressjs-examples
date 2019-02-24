@@ -1,0 +1,32 @@
+extends ./layout/layout.pug
+
+block content
+
+	if err
+		.alert.alert-danger = err
+
+	form(method = 'POST', action = '/weather')
+		.form-group
+			label(for="city") Enter City
+			input#city.form-control(name="city", type ="text", placeholder="Enter city")
+
+		button(class="btn btn-primary ml-2") Get Weather
+
+	table.table.table-bordered
+		tr
+			th City
+			th Temp
+			th Pressure
+			th Humidity
+			th Temp Min
+			th Temp Max
+
+		if (weather!==undefined)
+			tr
+				td= weather.name
+				td= weather.main.temp
+				td= weather.main.pressure +" hPA"
+				td= weather.main.humidity + "%"
+				td= weather.main.temp_min
+				td= weather.main.temp_max
+
